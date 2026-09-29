@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEOCLÁSICO PARA BOBOS</title>
+
+    <!--
+        FUENTES
+        Todo viene desde CDN.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        :root {
+            --negro: #070707;
+            --negro-2: #101010;
+            --papel: #eee7d7;
+            --papel-2: #d9d0bd;
+            --oro: #d5a84b;
+            --oro-claro: #f2cf7b;
+            --rojo: #8e3030;
+            --gris: #aaa398;
+            --blanco: #f8f5ed;
+
+            --sombra:
+                0 20px 60px rgba(0,0,0,.45);
+
+            --transicion:
+                all .35s ease;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--negro);
+            color: var(--blanco);
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           PARTICULAS
+        ===================================================== */
+
+        #particles-js {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+        }
+
+
+        /* =====================================================
+           BARRA DE PROGRESO
+        ===================================================== */
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            height: 4px;
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--oro),
+                    var(--oro-claro)
+                );
+
+            z-index: 9999;
+            box-shadow: 0 0 15px var(--oro);
+        }
+
+
+        /* =====================================================
+           NAV
+        ===================================================== */
+
+        nav {
+            position: fixed;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: min(1100px, 94%);
+
+            padding: 12px 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(10,10,10,.78);
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(213,168,75,.25);
+
+            border-radius: 0 0 18px 18px;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: "Cinzel", serif;
+            color: var(--oro-claro);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            color: #bbb;
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            transition: var(--transicion);
+        }
+
+        .nav-links a:hover {
+            color: var(--oro-claro);
+            background: rgba(213,168,75,.1);
+        }
+
+
+        /* =====================================================
+           PORTADA
+        ===================================================== */
+
+        .cover {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 20px;
+
+            position: relative;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(213,168,75,.14),
+                    transparent 40%
+                );
+        }
+
+        .cover-content {
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            color: var(--oro);
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .cover h1 {
+            font-family: "Cinzel", serif;
+
+            font-size: clamp(55px, 10vw, 120px);
+
+            line-height: .9;
+
+            letter-spacing: -4px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #fff,
+                    var(--oro-claro),
+                    #8b6424,
+                    #fff
+                );
+
+            background-size: 300%;
+
+            -webkit-background-clip: text;
+            color: transparent;
+
+            animation: shine 7s linear infinite;
+        }
+
+        @keyframes shine {
+
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+
+        }
+
+        .cover p {
+            max-width: 650px;
+
+            margin: 35px auto;
+
+            color: #bbb;
+
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .gold-button {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border: 1px solid var(--oro);
+
+            color: var(--oro-claro);
+
+            border-radius: 30px;
+
+            transition: var(--transicion);
+
+            cursor: pointer;
+        }
+
+        .gold-button:hover {
+            background: var(--oro);
+            color: #111;
+
+            transform:
+                translateY(-4px)
+                scale(1.03);
+
+            box-shadow:
+                0 10px 40px rgba(213,168,75,.3);
+        }
+
+
+        /* =====================================================
+           LIBRO
+        ===================================================== */
+
+        main {
+            width: min(1000px, 94%);
+            margin: auto;
+        }
+
+        .page {
+            min-height: 90vh;
+
+            margin: 40px 0;
+
+            padding: clamp(30px, 6vw, 80px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eee7d7,
+                    #ded4bf
+                );
+
+            color: #171512;
+
+            border-radius: 4px;
+
+            box-shadow: var(--sombra);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            right: 0;
+
+            width: 180px;
+            height: 180px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(142,48,48,.16),
+                    transparent 70%
+                );
+        }
+
+        .page-number {
+            position: absolute;
+
+            top: 25px;
+            right: 35px;
+
+            font-family: "Cinzel", serif;
+
+            color: #8d806b;
+            font-size: 13px;
+        }
+
+        .chapter {
+            font-family: "Cinzel", serif;
+
+            color: var(--rojo);
+
+            font-size: 13px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .page h2 {
+            font-family: "Cinzel", serif;
+
+            font-size: clamp(35px, 6vw, 65px);
+
+            line-height: 1;
+
+            margin-bottom: 30px;
+        }
+
+        .lead {
+            font-size: 21px;
+            line-height: 1.6;
+
+            max-width: 750px;
+
+            color: #4b453b;
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(210px, 1fr)
+                );
+
+            gap: 18px;
+
+            margin-top: 40px;
+        }
+
+        .card {
+            padding: 25px;
+
+            background: rgba(255,255,255,.35);
+
+            border: 1px solid rgba(80,65,40,.2);
+
+            border-radius: 12px;
+
+            transition: var(--transicion);
+        }
+
+        .card:hover {
+            transform:
+                translateY(-8px)
+                rotateX(3deg);
+
+            background: rgba(255,255,255,.65);
+
+            box-shadow:
+                0 20px 40px rgba(60,45,20,.12);
+        }
+
+        .card-number {
+            font-family: "Cinzel", serif;
+
+            font-size: 35px;
+
+            color: var(--oro);
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #615a4e;
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           FÓRMULAS
+        ===================================================== */
+
+        .formula {
+            margin: 30px 0;
+
+            padding: 25px;
+
+            background: #12110f;
+
+            color: var(--oro-claro);
+
+            font-family: "Courier New", monospace;
+
+            font-size: clamp(18px, 3vw, 28px);
+
+            text-align: center;
+
+            border-radius: 10px;
+
+            box-shadow:
+                inset 0 0 40px rgba(213,168,75,.06);
+        }
+
+
+        /* =====================================================
+           NOTAS
+        ===================================================== */
+
+        .notes {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin: 25px 0;
+        }
+
+        .note {
+            width: 58px;
+            height: 58px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: #171512;
+
+            color: white;
+
+            border: 1px solid #444;
+
+            font-family: "Cinzel", serif;
+
+            cursor: pointer;
+
+            transition: var(--transicion);
+        }
+
+        .note:hover {
+            background: var(--oro);
+            color: #111;
+
+            transform:
+                translateY(-7px)
+                scale(1.12);
+
+            box-shadow:
+                0 10px 25px rgba(213,168,75,.4);
+        }
+
+
+        /* =====================================================
+           TABLA
+        ===================================================== */
+
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 600px;
+        }
+
+        th,
+        td {
+            padding: 14px;
+
+            border-bottom:
+                1px solid rgba(50,40,25,.2);
+
+            text-align: left;
+        }
+
+        th {
+            font-family: "Cinzel", serif;
+            color: var(--rojo);
+        }
+
+
+        /* =====================================================
+           ACORDEÓN
+        ===================================================== */
+
+        details {
+            margin: 15px 0;
+
+            border:
+                1px solid rgba(60,45,20,.2);
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 18px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            background: rgba(255,255,255,.35);
+        }
+
+        details div {
+            padding: 20px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           CÓDIGO MUSICAL
+        ===================================================== */
+
+        pre {
+            background: #111;
+
+            color: #eee;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            line-height: 1.7;
+
+            font-family: "Courier New", monospace;
+        }
+
+        .highlight {
+            color: var(--oro-claro);
+        }
+
+
+        /* =====================================================
+           EJERCICIO
+        ===================================================== */
+
+        .exercise {
+            margin-top: 35px;
+
+            padding: 30px;
+
+            border-left:
+                5px solid var(--oro);
+
+            background:
+                rgba(255,255,255,.45);
+        }
+
+        .exercise strong {
+            color: var(--rojo);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            text-align: center;
+
+            padding: 80px 20px;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            nav {
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .page {
+                min-height: auto;
+            }
+
+            .cover h1 {
+                letter-spacing: -2px;
+            }
+
+            .cover p {
+                font-size: 16px;
+            }
+
+            .page {
+                padding: 45px 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- PARTICULAS -->
+<div id="particles-js"></div>
+
+<!-- PROGRESO -->
+<div class="progress-bar" id="progress"></div>
+
+
+<!-- =========================================================
+     NAVEGACIÓN
+========================================================= -->
+
+<nav>
+
+    <div class="logo">
+        NPB
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#mapa">
+                MAPA
+            </a>
+        </li>
+
+        <li>
+            <a href="#arpegios">
+                ARPEGIOS
+            </a>
+        </li>
+
+        <li>
+            <a href="#bach">
+                BACH
+            </a>
+        </li>
+
+        <li>
+            <a href="#disminuido">
+                DISMINUIDO
+            </a>
+        </li>
+
+        <li>
+            <a href="#practica">
+                PRÁCTICA
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================================================
+     PORTADA
+========================================================= -->
+
+<header class="cover">
+
+    <div class="cover-content">
+
+        <div class="eyebrow">
+            Método de guitarra eléctrica
+        </div>
+
+        <h1>
+            Neoclásico<br>
+            para bobos
+        </h1>
+
+        <p>
+            Arpegios, Bach, disminuidos, secuencias,
+            velocidad y corazón.
+            Un sistema para dejar de subir y bajar escalas
+            y empezar a entender por qué un punteo suena bien.
+        </p>
+
+        <a
+            class="gold-button"
+            href="#mapa"
+        >
+            ABRIR EL LIBRO
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================================
+     CAPÍTULO 1
+========================================================= -->
+
+<section
+    class="page"
+    id="mapa"
+>
+
+    <span class="page-number">
+        01
+    </span>
+
+    <div class="chapter">
+        Capítulo I
+    </div>
+
+    <h2>
+        El mapa
+    </h2>
+
+    <p class="lead">
+        No vamos a memorizar 400 dibujos.
+        Vamos a entender una idea:
+        <strong>
+            acorde → arpegio → movimiento → tensión → resolución.
+        </strong>
+    </p>
+
+
+    <div class="cards">
+
+        <article class="card">
+
+            <div class="card-number">
+                01
+            </div>
+
+            <h3>
+                Escala
+            </h3>
+
+            <p>
+                La pentatónica es nuestra casa.
+                No la abandonamos.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-number">
+                02
+            </div>
+
+            <h3>
+                Arpegio
+            </h3>
+
+            <p>
+                Las notas que definen
+                el acorde.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-number">
+                03
+            </div>
+
+            <h3>
+                Paso
+            </h3>
+
+            <p>
+                Notas que conectan
+                nuestros objetivos.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-number">
+                04
+            </div>
+
+            <h3>
+                Tensión
+            </h3>
+
+            <p>
+                Cromatismos,
+                disminuidos y notas inestables.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-number">
+                05
+            </div>
+
+            <h3>
+                Secuencia
+            </h3>
+
+            <p>
+                Una idea pequeña
+                desplazada por la escala.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="card-number">
+                06
+            </div>
+
+            <h3>
+                Corazón
+            </h3>
+
+            <p>
+                Bend, vibrato,
+                silencio y melodía.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="formula">
+
+        ESCALA → ARPEGIO → PASO → TENSIÓN → RESOLUCIÓN
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 2
+========================================================= -->
+
+<section
+    class="page"
+    id="arpegios"
+>
+
+    <span class="page-number">
+        02
+    </span>
+
+    <div class="chapter">
+        Capítulo II
+    </div>
+
+    <h2>
+        Arpegios para bobos
+    </h2>
+
+    <p class="lead">
+        Un arpegio es simplemente
+        <strong>
+            un acorde tocado nota por nota.
+        </strong>
+    </p>
+
+
+    <div class="cards">
+
+        <article class="card">
+
+            <h3>
+                Mayor
+            </h3>
+
+            <div class="formula">
+                1 — 3 — 5
+            </div>
+
+            <p>
+                A — C# — E
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                Menor
+            </h3>
+
+            <div class="formula">
+                1 — ♭3 — 5
+            </div>
+
+            <p>
+                A — C — E
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                Dominante 7
+            </h3>
+
+            <div class="formula">
+                1 — 3 — 5 — ♭7
+            </div>
+
+            <p>
+                A — C# — E — G
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                Menor 7
+            </h3>
+
+            <div class="formula">
+                1 — ♭3 — 5 — ♭7
+            </div>
+
+            <p>
+                A — C — E — G
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="exercise">
+
+        <strong>
+            EJERCICIO:
+        </strong>
+
+        <p>
+            Tocá:
+        </p>
+
+        <div class="formula">
+
+            A — C — E — C — A
+
+        </div>
+
+        <p>
+            Después:
+        </p>
+
+        <div class="formula">
+
+            A — C — E — G — E — C — A
+
+        </div>
+
+        <p>
+            No busques velocidad.
+            Buscá escuchar qué nota parece “casa”.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 3
+========================================================= -->
+
+<section
+    class="page"
+    id="bach"
+>
+
+    <span class="page-number">
+        03
+    </span>
+
+    <div class="chapter">
+        Capítulo III
+    </div>
+
+    <h2>
+        El robo a Bach
+    </h2>
+
+    <p class="lead">
+        Nuestra pieza central:
+        <strong>
+            Preludio y Fuga BWV 847
+            en Do menor.
+        </strong>
+    </p>
+
+
+    <details open>
+
+        <summary>
+            Compás 1 — Do menor
+        </summary>
+
+        <div>
+
+            <pre>
+<span class="highlight">
+C  Eb  D  Eb
+</span>
+
+C  = 1
+Eb = ♭3
+D  = 2
+
+Cm = C — Eb — G
+            </pre>
+
+            <p>
+                El D no pertenece a la triada
+                de Cm.
+                Funciona como
+                <strong>
+                    nota de paso
+                </strong>
+                hacia Eb.
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Compás 2 — Fa menor
+        </summary>
+
+        <div>
+
+            <pre>
+Ab  F  E  F
+
+Ab = ♭3
+F  = 1
+E  = 7
+            </pre>
+
+            <p>
+                E está a un semitono de F.
+                Eso genera tensión y
+                vuelve inmediatamente a F.
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Compás 3 — El disminuido
+        </summary>
+
+        <div>
+
+            <pre>
+B — D — F — Ab
+
+1 — ♭3 — ♭5 — ♭♭7
+
+B°7
+            </pre>
+
+            <p>
+                Acá aparece el recurso
+                que vamos a explotar:
+                <strong>
+                    el acorde disminuido.
+                </strong>
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Compás 4 — Volvemos a casa
+        </summary>
+
+        <div>
+
+            <pre>
+C — G — F — G
+Eb — G — F — G
+            </pre>
+
+            <p>
+                Volvemos a sentir
+                <strong>
+                    Do menor.
+                </strong>
+            </p>
+
+        </div>
+
+    </details>
+
+
+    <div class="formula">
+
+        Cm → Fm → B°7 → Cm
+
+    </div>
+
+
+    <div class="exercise">
+
+        <strong>
+            LA PREGUNTA QUE TENÉS QUE HACERTE:
+        </strong>
+
+        <p>
+            “¿Qué acorde está sonando?”
+        </p>
+
+        <p>
+            “¿Cuáles son sus notas importantes?”
+        </p>
+
+        <p>
+            “¿Qué nota puedo usar para llegar hasta ellas?”
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 4
+========================================================= -->
+
+<section
+    class="page"
+    id="disminuido"
+>
+
+    <span class="page-number">
+        04
+    </span>
+
+    <div class="chapter">
+        Capítulo IV
+    </div>
+
+    <h2>
+        El arma secreta
+    </h2>
+
+    <p class="lead">
+        El disminuido parece complicado.
+        En realidad tiene una propiedad
+        que lo hace extremadamente cómodo.
+    </p>
+
+
+    <div class="formula">
+
+        1 — ♭3 — ♭5 — ♭♭7
+
+    </div>
+
+
+    <div class="notes">
+
+        <div class="note">
+            B
+        </div>
+
+        <div class="note">
+            D
+        </div>
+
+        <div class="note">
+            F
+        </div>
+
+        <div class="note">
+            Ab
+        </div>
+
+    </div>
+
+
+    <p>
+        B°7:
+    </p>
+
+
+    <div class="formula">
+
+        B — D — F — Ab
+
+    </div>
+
+
+    <p>
+        Ahora desplazá el mismo conjunto
+        tres trastes:
+    </p>
+
+
+    <div class="cards">
+
+        <article class="card">
+
+            <h3>
+                B°7
+            </h3>
+
+            <p>
+                B — D — F — Ab
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                D°7
+            </h3>
+
+            <p>
+                D — F — Ab — B
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                F°7
+            </h3>
+
+            <p>
+                F — Ab — B — D
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                Ab°7
+            </h3>
+
+            <p>
+                Ab — B — D — F
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="exercise">
+
+        <strong>
+            MISIÓN:
+        </strong>
+
+        <p>
+            Tocá B–D–F–Ab lentamente.
+            Después subí el mismo dibujo
+            tres trastes.
+        </p>
+
+        <p>
+            No pienses todavía en velocidad.
+            Escuchá la tensión.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 5
+========================================================= -->
+
+<section
+    class="page"
+>
+
+    <span class="page-number">
+        05
+    </span>
+
+    <div class="chapter">
+        Capítulo V
+    </div>
+
+    <h2>
+        Secuencias
+    </h2>
+
+    <p class="lead">
+        Acá empieza el verdadero
+        “piribiribí”.
+    </p>
+
+
+    <p>
+        Una secuencia es agarrar una pequeña
+        idea y moverla.
+    </p>
+
+
+    <pre>
+A C E
+B D F
+C E G
+D F A
+    </pre>
+
+
+    <h3>
+        Otra:
+    </h3>
+
+
+    <pre>
+A C B C
+C E D E
+E G F G
+    </pre>
+
+
+    <div class="formula">
+
+        IDEA → REPETIR → DESPLAZAR → ACELERAR → RESOLVER
+
+    </div>
+
+
+    <div class="exercise">
+
+        <strong>
+            EJERCICIO:
+        </strong>
+
+        <p>
+            Inventá una idea de solamente
+            3 notas.
+        </p>
+
+        <p>
+            Después repetila empezando
+            desde la nota siguiente.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 6
+========================================================= -->
+
+<section
+    class="page"
+>
+
+    <span class="page-number">
+        06
+    </span>
+
+    <div class="chapter">
+        Capítulo VI
+    </div>
+
+    <h2>
+        No mates el corazón
+    </h2>
+
+    <p class="lead">
+        El objetivo no es transformarte
+        en una máquina de semicorcheas.
+    </p>
+
+
+    <div class="cards">
+
+        <article class="card">
+
+            <h3>
+                BEND
+            </h3>
+
+            <p>
+                Una nota empuja hacia otra.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                VIBRATO
+            </h3>
+
+            <p>
+                Dejá que una nota respire.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                SILENCIO
+            </h3>
+
+            <p>
+                El silencio hace que
+                la corrida tenga significado.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                VELOCIDAD
+            </h3>
+
+            <p>
+                Es un recurso.
+                No es el objetivo.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="formula">
+
+        BEND → FRASE → SILENCIO → ARPEGIO
+        → CORRIDA → VIBRATO
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 7
+========================================================= -->
+
+<section
+    class="page"
+    id="practica"
+>
+
+    <span class="page-number">
+        07
+    </span>
+
+    <div class="chapter">
+        Capítulo VII
+    </div>
+
+    <h2>
+        Rutina de 25 minutos
+    </h2>
+
+
+    <div class="cards">
+
+        <article class="card">
+
+            <h3>
+                05 min
+            </h3>
+
+            <p>
+                Pentatónica de Am.
+                Bends y vibrato.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                05 min
+            </h3>
+
+            <p>
+                Am = A–C–E.
+                Encontrá las tres notas.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                05 min
+            </h3>
+
+            <p>
+                A–C–E–G–E–C–A.
+                Alternate picking.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                05 min
+            </h3>
+
+            <p>
+                Una secuencia.
+                Metrónomo lento.
+            </p>
+
+        </article>
+
+
+        <article class="card">
+
+            <h3>
+                05 min
+            </h3>
+
+            <p>
+                Improvisá.
+                Grabate.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="exercise">
+
+        <strong>
+            REGLA:
+        </strong>
+
+        <p>
+            Si una corrida sale sucia,
+            bajá la velocidad.
+        </p>
+
+        <p>
+            La velocidad se construye
+            desde la limpieza.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CAPÍTULO 8
+========================================================= -->
+
+<section
+    class="page"
+>
+
+    <span class="page-number">
+        08
+    </span>
+
+    <div class="chapter">
+        Capítulo VIII
+    </div>
+
+    <h2>
+        El laboratorio
+    </h2>
+
+    <p class="lead">
+        Estas son las piezas de las que
+        vamos a robar ideas.
+    </p>
+
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        # 
+                    </th>
+
+                    <th>
+                        Obra
+                    </th>
+
+                    <th>
+                        Buscamos
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+                    <td>01</td>
+                    <td>Bach — BWV 565</td>
+                    <td>Arpegios</td>
+                </tr>
+
+                <tr>
+                    <td>02</td>
+                    <td>Bach — BWV 846</td>
+                    <td>Arpegios encadenados</td>
+                </tr>
+
+                <tr>
+                    <td>03</td>
+                    <td>Bach — BWV 775</td>
+                    <td>Secuencias</td>
+                </tr>
+
+                <tr>
+                    <td>04</td>
+                    <td>Bach — BWV 779</td>
+                    <td>Respuestas</td>
+                </tr>
+
+                <tr>
+                    <td>05</td>
+                    <td>Bach — Chaconne BWV 1004</td>
+                    <td>Drama</td>
+                </tr>
+
+                <tr>
+                    <td>06</td>
+                    <td>Bach — BWV 999</td>
+                    <td>Arpegios oscuros</td>
+                </tr>
+
+                <tr>
+                    <td>07</td>
+                    <td>Bach — BWV 847</td>
+                    <td>Patrón + armonía</td>
+                </tr>
+
+                <tr>
+                    <td>08</td>
+                    <td>Vivaldi — Verano</td>
+                    <td>Velocidad</td>
+                </tr>
+
+                <tr>
+                    <td>09</td>
+                    <td>Vivaldi — Invierno</td>
+                    <td>Tensión</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td>Paganini — Capricho 24</td>
+                    <td>Variaciones</td>
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td>Beethoven — Claro de luna III</td>
+                    <td>Arpegios</td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td>Beethoven — Patética</td>
+                    <td>Drama</td>
+                </tr>
+
+                <tr>
+                    <td>13</td>
+                    <td>Brahms — Danza húngara 5</td>
+                    <td>Carácter</td>
+                </tr>
+
+                <tr>
+                    <td>14</td>
+                    <td>Rachmaninoff — Op. 3 Nº 2</td>
+                    <td>Tensión</td>
+                </tr>
+
+                <tr>
+                    <td>15</td>
+                    <td>Tchaikovsky — Concierto Nº 1</td>
+                    <td>Épica</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL
+========================================================= -->
+
+<section
+    class="page"
+>
+
+    <span class="page-number">
+        ∞
+    </span>
+
+    <div class="chapter">
+        El objetivo
+    </div>
+
+    <h2>
+        Puntear con intención.
+    </h2>
+
+    <p class="lead">
+        Que puedas agarrar una base en La menor,
+        escuchar el acorde y saber dónde están
+        las notas que importan.
+    </p>
+
+
+    <div class="formula">
+
+        PENTATÓNICA
+        ↓
+        ARPEGIO
+        ↓
+        NOTAS DE PASO
+        ↓
+        SECUENCIA
+        ↓
+        DISMINUIDO
+        ↓
+        CORRIDA
+        ↓
+        SILENCIO
+        ↓
+        BEND + VIBRATO
+        ↓
+        RESOLUCIÓN
+
+    </div>
+
+
+    <div class="exercise">
+
+        <strong>
+            LA PRUEBA FINAL:
+        </strong>
+
+        <p>
+            Poné una base en Am.
+        </p>
+
+        <p>
+            Durante un minuto no pienses
+            en “qué escala toca”.
+        </p>
+
+        <p>
+            Pensá:
+        </p>
+
+        <p>
+            <strong>
+                ¿Qué acorde está sonando?
+            </strong>
+        </p>
+
+        <p>
+            <strong>
+                ¿Qué notas lo definen?
+            </strong>
+        </p>
+
+        <p>
+            <strong>
+                ¿Cómo llego hasta ellas?
+            </strong>
+        </p>
+
+    </div>
+
+
+    <div class="formula">
+
+        VELOCIDAD PARA SORPRENDER.<br>
+        ARMONÍA PARA EMOCIONAR.<br>
+        CORAZÓN PARA QUE IMPORTE.
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    NEOCLÁSICO PARA BOBOS
+
+    <br><br>
+
+    Edición 01 · Método de guitarra eléctrica
+
+</footer>
+
+
+<!-- =========================================================
+     PARTICLES.JS
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+
+<script>
+
+    /* =====================================================
+       PARTÍCULAS
+    ===================================================== */
+
+    particlesJS("particles-js", {
+
+        particles: {
+
+            number: {
+                value: 45
+            },
+
+            color: {
+                value: "#d5a84b"
+            },
+
+            opacity: {
+                value: 0.25
+            },
+
+            size: {
+                value: 2
+            },
+
+            move: {
+
+                enable: true,
+
+                speed: 0.5
+
+            },
+
+            line_linked: {
+
+                enable: true,
+
+                distance: 150,
+
+                color: "#d5a84b",
+
+                opacity: 0.08,
+
+                width: 1
+
+            }
+
+        },
+
+        interactivity: {
+
+            events: {
+
+                onhover: {
+
+                    enable: true,
+
+                    mode: "repulse"
+
+                }
+
+            },
+
+            modes: {
+
+                repulse: {
+
+                    distance: 100
+
+                }
+
+            }
+
+        }
+
+    });
+
+
+    /* =====================================================
+       BARRA DE PROGRESO
+    ===================================================== */
+
+    const progress =
+        document.querySelector("#progress");
+
+
+    window.addEventListener("scroll", () => {
+
+        const altura =
+            document.documentElement.scrollHeight
+            - window.innerHeight;
+
+        const recorrido =
+            window.scrollY / altura * 100;
+
+        progress.style.width =
+            recorrido + "%";
+
+    });
+
+
+    /* =====================================================
+       EFECTO SIMPLE EN NOTAS
+    ===================================================== */
+
+    const notes =
+        document.querySelectorAll(".note");
+
+
+    notes.forEach(note => {
+
+        note.addEventListener("click", () => {
+
+            note.animate(
+
+                [
+                    {
+                        transform: "scale(1)"
+                    },
+
+                    {
+                        transform: "scale(1.3) rotate(8deg)"
+                    },
+
+                    {
+                        transform: "scale(1)"
+                    }
+
+                ],
+
+                {
+
+                    duration: 350
+
+                }
+
+            );
+
+        });
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
